@@ -89,6 +89,15 @@ console.log(typeof numberType) // number
 
 - `typeof` 연사는 데이터 타입을 알아볼수 있습니다
 
+- 문자열 표시는 `""` 기호로 하거나 `''`로 할수있지만 EC6부터는 ` `` `벡틱(키보드 ~랑 같있는 키)이라는 기능을 통해 다양하게 활용가능
+
+```js
+let weight = 70
+console.log("내 몸무게는" + weight+ "이야");
+
+console.log(`내 몸무게는 ${weight} 이야`);
+```
+
 
 ## 자료형 변환
 
