@@ -1,14 +1,17 @@
 # JavaScript란
 
 - 자바스크립트는 ‘웹페이지에 생동감을 불어넣기 위해’ 만들어진 프로그래밍 언어입니다.
-- HTML/CSS와 완전히 통합할 수 있음
-- 간단한 일은 간단하게 처리할 수 있게 해줌
-- 모든 주요 브라우저에서 지원하고, 기본 언어로 사용됨
 
+- HTML/CSS와 완전히 통합할 수 있음
+
+- 간단한 일은 간단하게 처리할 수 있게 해줌
+
+- 모든 주요 브라우저에서 지원하고, 기본 언어로 사용됨
 
 ## Sever Side, Cliet Side
 
 - 기본적으로 JS는 웹 환경(Browser, Document)를 다루기 위해 개발
+
 - 하지만 브라우 밖에서 사용할수 있는 환경을 만들어주는 것이 Node.js(Javascript Runtime)
 
 - Nodejs의 장점
@@ -40,10 +43,12 @@
 ```js
 var helloMsg;
 helloMsg = 'Hello';
+
 let worldMsg;
 worldMsg = 'World!';
 
 console.log(helloMsg);
+
 console.log(worldMsg);
 ```
 > 상수(constant)는 데이터를 저장할때 변하지 않는 값을 뜻한다.
@@ -93,9 +98,11 @@ console.log(typeof numberType) // number
 
 ```js
 let number = 1123;
+
 console.log(typeof number); // number
 
 changeString= String(number); // 변수 value엔 문자열 "true"가 저장됩니다.
+
 console.log(typeof changeString); // string
 ```
 
@@ -103,6 +110,7 @@ console.log(typeof changeString); // string
 
 ```js
 let string = "123";
+
 console.log(typeof string); // string
 
 let number = Number(string); // 문자열 "123"이 숫자 123으로 변환됩니다.
