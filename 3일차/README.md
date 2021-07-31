@@ -285,7 +285,7 @@ delete user2.age;
 delete user2["gender"];
 ```
 
-## 3일차 과제 
+# 3일차 과제 
 > 베이스 지식 
 
 - 일단 `querySelector`,`createElement`,`appendChild`,`removeChild`에 대해 알아야한다.
