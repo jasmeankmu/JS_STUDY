@@ -198,3 +198,164 @@ const nextState = produce(state, draft => {})
 nextState.hello = 'new world'
 console.log(state, nextState)
 ```
+
+## 가비지 컬레션
+
+- 원시값, 객체, 함수 등 우리가 만드는 모든 것은 메모리를 차지합니다.
+
+- 그렇다면 사용하다가 이제 더이상 쓸모없어지는 경우에는 어떻게 처분 할까요?
+
+### 쓸모 없어지는 기준
+
+- 자바스크립트는 도달 가능성(reachability) 이라는 개념을 사용해 메모리 관리를 수행합니다.
+
+- ‘도달 가능한(reachable)’ 값은 쉽게 말해 어떻게든 접근하거나 사용할 수 있는 값을 의미합니다. 도달 가능한 값은 메모리에서 삭제되지 않습니다.
+
+- 아래 소개해 드리는 값은 도달 가능하기 때문에, 명백한 이유 없이 삭제 되지 않습니다.
+
+    - 현재 함수의 지역변수 매개 변수
+
+    - 중첩 함수의 체인에 있는 함수에서 사용되는 변수와 매개변수
+
+    - 전역 변수
+
+```js
+let tmp = {
+    age : 18
+}
+
+tmp =null;
+```
+
+## 메서드와 this
+
+- 객체는 실제 존재하는 객체를 표현하고자 합니다. 
+
+- 이와 비슷하게 현실세계에서 객체들은 행동이나 기능을 할수 있습니다.
+
+### 메서드 
+
+- 언어에서 객체들은 행동이나 긴능을 메서드(객체의 함수라고 생각하면 편하다) 를 통해 구현할수 있습니다.
+
+- 먼저 사람 객체를 만들고 인사를 하는 메서드를 구현해보도록 하겠습니다
+
+```js
+let person = {
+  name: "kim",
+  age: 20
+};
+
+person.sayHi = () => {
+  console.log("안녕하세요!");
+};
+
+person.sayHi(); // 안녕하세요!
+```
+
+- 이런식으로 객체를 사용해서 개체를 표현하는 방식을 OOP(Object-oriented Programing)객체 지향 프로그래밍 이라고 부블빈다.
+
+- OOP는 상당히 중요한데요, 올바를 객체의 선택법, 개체 사이의 상호작용, 객체 지향 설계 방법  등 많습니다
+
+
+### 메서드와 this
+
+- 메서드는 자신이 속한 객체의 프로퍼티에 대해 활용 할수 있어야합ㅈ니다.
+
+- 메서드에서 프로퍼티를 사용하기위해 `this`를 통해 만들어 보겠습니다.
+
+```js
+let person = {
+  name: "kim",
+  age: 30,
+  intro() {
+    console.log(`my name ${name}`);
+    console.log(`my name ${this.name}`);
+    console.log(`my name ${person.age}`);
+ };
+};
+
+
+person.intro(); // 안녕하세요!
+
+```
+### 자유로운 this
+
+- 자바스크립트의 `this`는 다른 프로그래밍 언어의 `this`와 다릅니다.
+
+- 자바스크립트에서는 모든 함수에 `this`를 활용할수 있습니다.
+
+```js
+function test() {
+  console.log( this.name );
+}
+```
+
+- 위 코드는 왜 에러가 발생하지 않을까요?
+
+- 그 이유는 this의 값은 런타입에 결정이 되며 컨텍스트에 따라 바뀌게 됩니다.
+> 런타임이 뭐야?? <a href= "https://www.youtube.com/watch?v=8aGhZQkoFbQ">런타임에 대해 배우기</a>
+
+- 쉽게 생각하면 호출하는 위치에 따라 `this`값이 바뀌게 됩니다.
+
+```js
+let user = { name: "John" };
+let admin = { name: "Admin" };
+
+function sayHi() {
+  console.log( this.name );
+}
+
+user.f = sayHi;
+admin.f = sayHi;
+
+user.f(); 
+admin.f(); 
+
+admin['f']();
+
+```
+- 화살표 함수는 다른 함수들과 달리 고유한 `this`를 가지지 않습니다.
+
+- 화살표 함수에서 `this`를 사용하면 외부 함수에서 this를 사용합니다.
+
+- 이부분은 나중에 다시 설명 하도록 하겠습니다.
+
+
+## new 연산자와 생서자 함수 
+
+- 이제 객체의 메서드를 넣고 활용하는것 까지 해보았습니다.
+
+- 그런데 이런 함수들을 여러개 만들어서 사용하고 싶은데 어떻게 해야하나요
+
+- 그럴때 `new`연산자를 사용하면 객체를 여러개 만들수 있습니다.
+
+```js
+function User(name){
+    this.name = name;
+    this.age = "male";
+}
+let user = new User("kim");
+
+console.log(user.name);
+
+console.log(user.age);
+
+```
+
+- `new`알고리즘이 작동하면 아래와 같은 알고리즘이 작동합니다
+
+    - 1. 빈 객체를 만들어 this를 할당
+    - 2. 함수 본문을 실행, `this`에 새로운 프로퍼티를 추가해 `this`를 수정
+    - 3. `this`를 반환 
+
+```js
+function User(name) {
+  // this = {};  (빈 객체가 암시적으로 만들어짐)
+
+  // 새로운 프로퍼티를 this에 추가함
+  this.name = name;
+  this.age= "male";
+
+  // return this;  (this가 암시적으로 반환됨)
+}
+```
