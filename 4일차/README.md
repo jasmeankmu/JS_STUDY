@@ -359,3 +359,4 @@ function User(name) {
   // return this;  (this가 암시적으로 반환됨)
 }
 ```
+
