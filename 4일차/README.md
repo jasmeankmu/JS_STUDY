@@ -155,13 +155,13 @@ console.log(original.c.d) // 3000 뭐지?!
 
 - 먼저 `shallow`, `Deep+sahllow`, `Deep`에 대해 알아보도록 하겠습니다
 
-<p align="center"><img src="./READMEIMG/4Days/1.png"></p>
+<p align="center"><img src="../READMEIMG/4Days/1.png"></p>
 
 
-<p align="center"><img src="./READMEIMG/4Days/2.png"></p>
+<p align="center"><img src="../READMEIMG/4Days/2.png"></p>
 
 
-<p align="center"><img src="./READMEIMG/4Days/3.png"></p>
+<p align="center"><img src="../READMEIMG/4Days/3.png"></p>
 
 - 그림을 보니 이해가 좀 되셨나요. 내부의 객체까지 복사를 하지 못했기 때문에 `3000`이라는 값이 나온겁니다.
 
