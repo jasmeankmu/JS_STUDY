@@ -8,4 +8,4 @@
 
 [3일차-함수,화살표함수,Scope,객체](./3일차/README.md)  
 
-[4일차-객체,Copy](./4일차/README.md)  
+[4일차-객체,Copy,가비지](./4일차/README.md)  
