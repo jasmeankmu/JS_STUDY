@@ -5,10 +5,10 @@ const containerBox = document.querySelector("#containerBox"),
     listForm = inputList.querySelector("#listForm"),
     input = listForm.querySelector("input");
 
-
+;
 const list_LS = "toDos";
 
-let toDos = [];
+let toDos = []
 
 function saveList(){
     localStorage.setItem(list_LS, JSON.stringify(toDos));
